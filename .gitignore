@@ -1,0 +1,4 @@
+pyenv
+.vscode
+src/configuration.py
+src/*.pyc

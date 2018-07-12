@@ -1,0 +1,9 @@
+jira_auth = {
+    'server': 'https://adroll.atlassian.net',
+    'auth': ('your.email@server.com', 'yourpassword')
+}
+
+ongoing_template = 'Working on {comma_separated_issues}.'
+finished_template = 'Finished working on {comma_separated_issues}.'
+
+output_template = '8hs - {ongoing} {finished}'
