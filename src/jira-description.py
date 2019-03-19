@@ -9,7 +9,8 @@ def get_in_progress(jira_client, date):
     not_resolved_before = date - timedelta(days=1)
     query = """assignee = currentUser()
     AND status changed TO 'In Progress' before {in_progress_before}
-    AND NOT status changed TO 'Resolved' before {not_resolved_before}""".format(
+    AND NOT status changed TO 'Resolved' before {not_resolved_before}
+    AND NOT status changed TO 'Cancelled' before {not_resolved_before}""".format(
         in_progress_before=in_progress_before.isoformat(),
         not_resolved_before=not_resolved_before.isoformat()
     )
@@ -22,7 +23,7 @@ def get_finished(jira_client, date):
     )
     return jira_client.search_issues(query)
 
-def format_string(ongoing_issues, finished_issues):
+def format_string(ongoing_issues, finished_issues, date):
     from configuration import ongoing_template, finished_template, output_template
 
     cs_ongoing_issues = ', '.join([issue.key for issue in ongoing_issues])
@@ -31,7 +32,7 @@ def format_string(ongoing_issues, finished_issues):
     ongoing_text = ongoing_template.format(comma_separated_issues=cs_ongoing_issues) if cs_ongoing_issues else ''
     finished_issues = finished_template.format(comma_separated_issues=cs_finished_issues) if cs_finished_issues else ''
     
-    return output_template.format(ongoing=ongoing_text, finished=finished_issues)
+    return output_template.format(ongoing=ongoing_text, finished=finished_issues, date=date)
     
 
 def main(description_date):
@@ -41,7 +42,7 @@ def main(description_date):
     in_progress = get_in_progress(client, description_date)
     finished = get_finished(client, description_date)
 
-    print(format_string(in_progress, finished))
+    print(format_string(in_progress, finished, description_date))
 
 def valid_date(s):
     try:
