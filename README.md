@@ -18,10 +18,12 @@ Rename `src/configuration.py.sample` to `src/configuration.py` and `auth` to you
 
 # Usage
 
-```jira-description.py [-h] [--date DATE | --today | --yesterday]
+```
+jira-description.py [-h] [--date DATE | --today | --yesterday]
 
 optional arguments:
   -h, --help   show this help message and exit
   --date DATE  Generate description for given date
   --today      Generate description for today
-  --yesterday  Generate description for yesterday```
+  --yesterday  Generate description for yesterday
+```
