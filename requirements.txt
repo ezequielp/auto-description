@@ -28,7 +28,7 @@ prompt-toolkit==1.0.15
 ptyprocess==0.6.0
 pyasn1==0.4.3
 pyasn1-modules==0.2.2
-Pygments==2.2.0
+Pygments==2.7.4
 pylint==1.9.2
 requests==2.19.1
 requests-oauthlib==1.0.0
